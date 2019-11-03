@@ -1,0 +1,17 @@
+{% extends "NextDoor/base.html" %}
+
+{% block content %}
+<h1> Delete</h1>
+<form method="post">{% csrf_token %}
+    Are you sure you want to delete "{{ object }}" ?
+
+    <button class = "btn btn-outline-danger" type="submit">Yes</button>
+    <button class="btn btn-outline-success" type="button">
+            <a href="{% url 'group' group.id %}">No</a>
+    </button>
+    
+</form>    
+
+
+
+{% endblock content %}

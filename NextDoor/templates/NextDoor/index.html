@@ -1,0 +1,475 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NextDoor: Home</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'main.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href=" {% static 'css/font-awesome.min.css' %}">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/elegant-fonts.css' %}">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'style.css' %} ">
+</head>
+<body>
+    <div class="hero-content">
+        <header class="site-header">
+            <div class="top-header-bar">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-none d-md-flex flex-wrap justify-content-center justify-content-lg-start mb-3 mb-lg-0">
+                            <div class="header-bar-email d-flex align-items-center">
+                                <i class="fa fa-envelope"></i><a href="#">next.door@gmail.com</a>
+                            </div><!-- .header-bar-email -->
+
+                            <div class="header-bar-text lg-flex align-items-center">
+                                <p><i class="fa fa-phone"></i>001-1234-88888 </p>
+                            </div><!-- .header-bar-text -->
+                        </div><!-- .col -->
+
+                        <div class="col-12 col-lg-6 d-flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                            <div class="header-bar-search">
+                                <form class="flex align-items-stretch">
+                                    <input type="search" placeholder="Which group are you looking for?">
+                                    <button type="submit" value="" class="flex justify-content-center align-items-center"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div><!-- .header-bar-search -->
+
+                            <div class="header-bar-menu">
+                                <ul class="flex justify-content-center align-items-center py-2 pt-md-0">
+                                        {% if user.is_authenticated %}
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                            <li><a href="{% url 'profile' %}">Profile</a></li>
+
+                                        {% else %}
+                                            <li><a href="{% url 'register' %}">Register</a></li>
+                                            <li><a href="{% url 'login' %}">Login</a></li>
+                                        {% endif%}
+
+                                </ul>
+                            </div><!-- .header-bar-menu -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container-fluid -->
+            </div><!-- .top-header-bar -->
+
+            <div class="nav-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9 col-lg-3">
+                            <div class="site-branding">
+                                <h1 class="site-title"><a href="{% url 'home' %}" rel="home"><img src="{% static 'images/headnd.png' %}" alt=""></a></h1>
+                            </div><!-- .site-branding -->
+                        </div><!-- .col -->
+
+                        <div class="col-3 col-lg-9 flex justify-content-end align-content-center">
+                            <nav class="site-navigation flex justify-content-end align-items-center">
+                                <ul class="flex flex-column flex-lg-row justify-content-lg-end align-content-center">
+                                    <li class="current-menu-item"><a href="{% url 'home' %}">Home</a></li>
+                                    
+                                    
+                                    <li><a href="{% url 'group_list' %}">Groups</a></li>
+                                    
+                                    <li><a href="{% url 'contact'%}">Contact</a></li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                </ul>
+
+                                <div class="hamburger-menu d-lg-none">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div><!-- .hamburger-menu -->
+
+                                <div class="header-bar-cart">
+                                    <a href="#" class="flex justify-content-center align-items-center"><span aria-hidden="true" class="icon_bag_alt"></span></a>
+                                </div><!-- .header-bar-search -->
+                            </nav><!-- .site-navigation -->
+                        </div><!-- .col -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .nav-bar -->
+        </header><!-- .site-header -->
+
+        <div class="hero-content-overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="hero-content-wrap flex flex-column justify-content-center align-items-start">
+                            <header class="entry-header">
+                                <h4>Meet your class online</h4>
+                                <h1>one place<br/>all resources</h1>
+                            </header><!-- .entry-header -->
+
+                            <div class="entry-content">
+                                <p>This is the perfect place for you to get a hold onto all the resources for your course!
+                                    <br/>Get your class code and simply get in to download your notes.
+                                </p>
+                            </div><!-- .entry-content -->
+
+                            <footer class="entry-footer read-more">
+                                <a href="{% url 'about' %}">read more</a>
+                            </footer><!-- .entry-footer -->
+                        </div><!-- .hero-content-wrap -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .hero-content-hero-content-overlay -->
+    </div><!-- .hero-content -->
+
+    <div class="icon-boxes">
+        <div class="container-fluid">
+            <div class="flex flex-wrap align-items-stretch">
+                <div class="icon-box">
+                    <div class="icon">
+                        <span class="ti-user"></span>
+                    </div><!-- .icon -->
+
+                    <header class="entry-header">
+                        <h2 class="entry-title">Teachers profile</h2>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <p>This is where you can find all the information about your faculty.</p>
+                    </div><!-- .entry-content -->
+
+                    <footer class="entry-footer read-more">
+                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
+                    </footer><!-- .entry-footer -->
+                </div><!-- .icon-box -->
+
+                <div class="icon-box">
+                    <div class="icon">
+                        <span class="ti-book"></span>
+                    </div><!-- .icon -->
+
+                    <header class="entry-header">
+                        <h2 class="entry-title">Course Materials</h2>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <p>Easy access to all your course materials.</p>
+                    </div><!-- .entry-content -->
+
+                    <footer class="entry-footer read-more">
+                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
+                    </footer><!-- .entry-footer -->
+                </div><!-- .icon-box -->
+
+                <div class="icon-box">
+                    <div class="icon">
+                        <span class="ti-download"></span>
+                    </div><!-- .icon -->
+
+                    <header class="entry-header">
+                        <h2 class="entry-title">Downloads</h2>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <p>All your download links in one place.</p>
+                    </div><!-- .entry-content -->
+
+                    <footer class="entry-footer read-more">
+                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
+                    </footer><!-- .entry-footer -->
+                </div><!-- .icon-box -->
+
+                <div class="icon-box">
+                    <div class="icon">
+                        <span class="ti-announcement"></span>
+                    </div><!-- .icon -->
+
+                    <header class="entry-header">
+                        <h2 class="entry-title">Anouncements</h2>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <p>All the latest news and notices will be available here.</p>
+                    </div><!-- .entry-content -->
+
+                    <footer class="entry-footer read-more">
+                        <a href="#">read more<i class="fa fa-long-arrow-right"></i></a>
+                    </footer><!-- .entry-footer -->
+                </div><!-- .icon-box -->
+            </div><!-- .row -->
+        </div><!-- .container-fluid -->
+    </div><!-- .icon-boxes -->
+
+    
+
+    <section class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 align-content-lg-stretch">
+                    <header class="heading">
+                        <h2 class="entry-title">Need help using NextDoor?</h2>
+
+                        <p>Watch the following video to learn about NextDoor. Also learn how to use the website to access the different features.</p>
+                    </header><!-- .heading -->
+                </div><!-- .col -->
+
+
+                <div class="col-12 col-lg-6 flex align-content-center mt-5 mt-lg-0">
+                    <div class="ezuca-video position-relative">
+                        <div class="video-play-btn position-absolute">
+                            <img src="{% static 'images/video-icon.png' %}" alt="Video Play">
+                        </div><!-- .video-play-btn -->
+
+                        <img src="{% static 'images/vid.jpg' %}" alt="">
+                    </div><!-- .ezuca-video -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </section><!-- .about-section -->
+
+  
+    <section class="latest-news-events">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="heading flex justify-content-between align-items-center">
+                        <h2 class="entry-title">Latest News & Events</h2>
+                    </header><!-- .heading -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6">
+                    <div class="featured-event-content">
+                        <figure class="event-thumbnail position-relative m-0">
+                            <a href="#"><img src="{% static 'images/event-1.jpg' %}" alt=""></a>
+
+                            <div class="posted-date position-absolute">
+                                <div class="day">23</div>
+                                <div class="month">Oct</div>
+                            </div><!-- .posted-date -->
+                        </figure><!-- .event-thumbnail -->
+
+                        <header class="entry-header flex flex-wrap align-items-center">
+                            <h2 class="entry-title"><a href="#">Workshop on Machine Learning</a></h2>
+
+                            <div class="event-location"><i class="fa fa-map-marker"></i>Bashundhara, Dhaka-1229, Bangladesh</div>
+
+                            <div class="event-duration"><i class="fa fa-calendar"></i>10 Dec - 12 dec</div>
+                        </header><!-- .entry-header -->
+                    </div><!-- .featured-event-content -->
+                </div><!-- .col -->
+
+                <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+                    <div class="event-content flex flex-wrap justify-content-between align-content-stretch">
+                        <figure class="event-thumbnail">
+                            <a href="#"><img src="{% static 'images/event-2.jpg' %}" alt=""></a>
+                        </figure><!-- .course-thumbnail -->
+
+                        <div class="event-content-wrap">
+                            <header class="entry-header">
+                                <div class="posted-date">
+                                    <i class="fa fa-calendar"></i> 22 Oct 2018
+                                </div><!-- .posted-date -->
+
+                                <h2 class="entry-title"><a href="#">International Programming Contest</a></h2>
+
+                                
+                            </header><!-- .entry-header -->
+
+                            <div class="entry-content">
+                                <p>Like challenges? Participate and develop your skills by competing internationally.</p>
+                            </div><!-- .entry-content -->
+                        </div><!-- .event-content-wrap -->
+                    </div><!-- .event-content -->
+
+                    <div class="event-content flex flex-wrap justify-content-between align-content-lg-stretch">
+                        <figure class="event-thumbnail">
+                            <a href="#"><img src="{% static 'images/event-3.jpg' %}" alt=""></a>
+                        </figure><!-- .course-thumbnail -->
+
+                        <div class="event-content-wrap">
+                            <header class="entry-header">
+                                <div class="posted-date">
+                                    <i class="fa fa-calendar"></i> 22 Oct 2018
+                                </div><!-- .posted-date -->
+
+                                <h2 class="entry-title"><a href="#">Internship Programs</a></h2>
+
+                                
+                            </header><!-- .entry-header -->
+
+                            <div class="entry-content">
+                                <p>Hurry and apply for these exciting internship opportunities before you lose your spot.</p>
+                            </div><!-- .entry-content -->
+                        </div><!-- .event-content-wrap -->
+                    </div><!-- .event-content -->
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </section><!-- .latest-news-events -->
+
+    <section class="home-gallery">
+        <div class="gallery-wrap flex flex-wrap">
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/a.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/b.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x2">
+                <a href="#"><img src="{% static 'images/c.jpg'%}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/d.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/e.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x1">
+                <a href="#"><img src="{% static 'images/nsu1.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x1">
+                <a href="#"><img src="{% static 'images/nsu3.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/i.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x2 ">
+                <a href="#"><img src="{% static 'images/j.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/k.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/l.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x2">
+                <a href="#"><img src="{% static 'images/nsu4.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid2x2">
+                <a href="#"><img src="{% static 'images/g.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+
+            <div class="gallery-grid gallery-grid1x1">
+                <a href="#"><img src="{% static 'images/o.jpg' %}" alt=""></a>
+            </div><!-- .gallery-grid -->
+        </div><!-- .gallery-wrap -->
+    </section><!-- .home-gallery -->
+
+    <footer class="site-footer">
+        <div class="footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="foot-about">
+                            <a class="foot-logo" href="#"><img src="{% static 'images/footnd2.png' %}" alt=""></a>
+
+                            <p>This is website is to help connect teachers and students also giving the students an easy access to all the resources in one place.</p>
+
+                            <p class="footer-copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </div><!-- .foot-about -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-md-0">
+                        <div class="foot-contact">
+                            <h2>Contact Us</h2>
+
+                            <ul>
+                                <li>Email: next.door@gmail.com</li>
+                                <li>Phone: (+88) 111 222 333</li>
+                                <li>Address: Bashundhara, Dhaka-1229, Bangladesh</li>
+                            </ul>
+                        </div><!-- .foot-contact -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                        <div class="quick-links flex flex-wrap">
+                            <h2 class="w-100">Quick Links</h2>
+
+                            <ul class="w-50">
+                                <li><a href="#">About </a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                
+                            </ul>
+
+                            <ul class="w-50">
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                                
+                            </ul>
+                        </div><!-- .quick-links -->
+                    </div><!-- .col -->
+
+                    <div class="col-12 col-md-6 col-lg-3 mt-5 mt-lg-0">
+                        <div class="follow-us">
+                            <h2>Follow Us</h2>
+
+                            <ul class="follow-us flex flex-wrap align-items-center">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div><!-- .quick-links -->
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-widgets -->
+
+        <div class="footer-bar">
+            <div class="container">
+                <div class="row flex-wrap justify-content-center justify-content-lg-between align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <div class="download-apps flex flex-wrap justify-content-center justify-content-lg-start align-items-center">
+                            <a href="#"><img src="{% static 'images/app-store.png' %}" alt=""></a>
+                            <a href="#"><img src="{% static 'images/play-store.png' %}" alt=""></a>
+                        </div><!-- .download-apps -->
+
+                    </div>
+
+                    <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+                        <div class="footer-bar-nav">
+                            <ul class="flex flex-wrap justify-content-center justify-content-lg-end align-items-center">
+                                <li><a href="#">DPA</a></li>
+                                <li><a href="#">Terms of Use</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div><!-- .footer-bar-nav -->
+                    </div><!-- .col-12 -->
+                </div><!-- .row -->
+            </div><!-- .container -->
+        </div><!-- .footer-bar -->
+    </footer><!-- .site-footer -->
+
+<script type='text/javascript' src="{% static 'js/jquery.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/swiper.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/jquery.collapsible.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

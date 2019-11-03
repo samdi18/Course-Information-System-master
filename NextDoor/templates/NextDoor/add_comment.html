@@ -1,0 +1,21 @@
+{% extends "NextDoor/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class =  "card">
+    <div class = " card-body content-section">
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                <legend class = "border-bottom mb-4">
+                    Add you comment here</legend>
+                    {{form|crispy}}
+            </fieldset>
+            <div class = "form-group ">
+                <button class = "btn btn-outline-info" type="submit">Leave a comment</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

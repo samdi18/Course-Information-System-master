@@ -1,0 +1,49 @@
+{% extends "NextDoor/base.html"%}
+
+
+{% block content%}
+{% load static%}
+
+
+<div class="container">
+
+
+        <div class="row justify-content-between">
+            <div class="col-12">
+                <div class="contact-gmap">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4921.790268724933!2d90.42292846666746!3d23.815290616790296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c64c103a8093%3A0xd660a4f50365294a!2sNorth+South+University!5e0!3m2!1sen!2sbd!4v1544448624431" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>                </div><!-- .contact-gmap -->
+            </div><!-- .col -->
+
+            <div class="col-12 col-lg-6">
+                <div class="contact-form">
+                    <h3>Contact Form</h3>
+
+                    <form>
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <input type="text" placeholder="Subject">
+                        <textarea placeholder="Your Message" rows="4"></textarea>
+                        <input type="submit" value="Send Message">
+                    </form>
+                </div><!-- .contact-form -->
+            </div><!-- .col -->
+
+            <div class="col-12 col-lg-6">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+
+                    <p>Contact with us in this address or ask us your question by filling the form at your left.</p>
+
+                    <ul class="p-0 m-0">
+                        <li><span>Location:</span>Bashundhara R/A, Dhaka 1229</li>
+                        <li><span>Email:</span><a href="#">info.nextdoor@gmail.com</a></li>
+                        <li><span>Phone:</span><a href="#">(203) 123-6666</a></li>
+                    </ul>
+                </div><!-- .contact-info -->
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+
+
+
+{% endblock content%}

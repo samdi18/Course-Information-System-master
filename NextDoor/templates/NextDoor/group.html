@@ -1,0 +1,216 @@
+{% extends "NextDoor/base.html"%}
+
+{%block content %}
+{%load static %}
+{% load tz %}
+
+<h2 class="text-center text-uppercase">Welcome to {{ group.course_name }} group</h2>
+{% if user.is_authenticated and user == group.owner %}
+<h6 class="text-center text-muted"> PIN: {{ group.password }}</h6>
+{% endif %}
+
+{% if user.is_authenticated and user == group.owner %}
+
+    <div class="float-right">
+            <a type = "button" class="btn btn-default btn-sm" href="{% url 'update_group' group.id %}">Edit Group</a>
+            <a type = "button" class="btn btn-outline-danger btn-md" href="{% url 'delete_group' group.id %}">Delete Group</a>
+    </div>
+
+{% endif %}
+
+
+
+
+
+
+
+
+<div class="author-box">
+    <div class="author-info flex flex-wrap">
+        <div class="author-avatar">
+            <img src="{{group.owner.profile.image.url}}" alt="">
+
+            <ul class="author-social-profile p-0 m-0 mt-3 d-flex flex-wrap align-items-center">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+        </div><!-- .author-avatar -->
+
+        <div class="author-details">
+            <h3 class="author-name">{{ group.owner.get_full_name }}<span>Admin</span></h3>
+
+            <div class="entry-content mt-3">
+                
+                <p class=" font-weight-bold">{{ group.owner.profile.designation }}</p>
+                
+                <p>{{ group.owner.profile.faculty_description }}</p>
+                <p><span class="font-weight-bold">Office:</span> {{ group.owner.profile.office }}</p>
+                <p><span class="font-weight-bold">Phone:</span> {{ group.owner.profile.phone }}</p>
+                <p><span class="font-weight-bold">Email:</span><a href="#"> {{ group.owner.email }}</a></p>
+                <p>
+                    <span class="font-weight-bold">Website:</span>
+                    <a class="text-primary" href="{{ user.profile.website }}">{{ group.owner.profile.website }}</a>
+                </p>
+            </div><!-- .entry-content -->
+            <h3>Course Description:</h3>
+            <div class="entry-content mt-3">
+                <p>{{ group.course_description }}</p>
+                
+            </div><!-- .entry-content -->
+        </div><!-- .author-details -->
+    </div><!-- .author-info -->
+</div><!-- .author-box -->
+
+
+<div class ="pt-5" >
+        <h3>Schedule:</h3>
+        <br>
+        <table class="table table-bordered table-hover col-{breakpoint}-auto" id="_addFiveTable">
+            <thead class="bg bg-light">
+                <tr>
+                    
+                    <th width="30%" class="text-center">Exam</th>
+                    <th width="30%" class="text-center">Date</th>
+                    <th width="30%" class="text-center">Time</th>
+                </tr>
+            </thead>
+            <tbody>  
+                {% for schedules in schedule %}
+                <tr>
+                    
+                    <td class="text-center">{{ schedules.exam }}</td>
+                    <td class="text-center">{{ schedules.date }}</td>
+                    <td class="text-center">{{ schedules.time }}</td>
+                    
+                    <td>
+                    {% if user.is_authenticated and user == group.owner %}
+                        <button class="btn btn-outline-primary">
+                            <span class="ti-pencil"></span> 
+                            <a href="{% url 'edit_schedule' group.id schedules.id %}">Edit</a>
+                        </button>
+                    {% endif %}
+                    </td>
+
+                    <td>
+                    {% if user.is_authenticated and user == group.owner %}
+                        <button class="btn btn-outline-danger">
+                            <span class="ti-trash"></span>
+                            <a href="{% url 'delete_schedule' group.id schedules.id %}">Delete</a>
+                        </button>
+                    {% endif %}
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            {% if user.is_authenticated and user == group.owner %}
+                <button class="btn btn-outline-primary">
+                    <a href="{% url 'add_schedule' group.id %}">Add New</a>
+                </button>
+            {% endif %}
+        </div>
+        
+</div>
+
+<div class="author-box pt-5" >
+    <div>
+        <h3>Announcements:</h3>
+        <div class="entry-content mt-3 border border-left-1 border-success pl-3">
+        {% for announcements in announcement  %}
+            
+                <p><h5><strong>{{ announcements.subject }}</strong></h5></p>
+                <p>{{ announcements.content }}</p>
+                <small class="text-muted">{{ announcements.created|timezone:"Asia/Dhaka" }}</small>
+
+        {% endfor %}
+        </div><!-- .entry-content -->
+
+        
+    </div>
+    <div class="pt-3">
+        {% if user.is_authenticated and user == group.owner %}
+            <button class="btn btn-outline-primary">
+                <a href="{% url 'add_announcement' group.id %}">Add New Announcement</a>
+            </button>
+        {% endif%}
+    </div>
+    
+
+</div>
+
+
+<div class="author-box pt-5" >
+    <div>
+        <h3>Comments: </h3>
+        <div class="entry-content mt-3 border border-left-1 border-success pl-3">
+        {% for comments in comment  %}
+
+                {% if user == group.owner or comments.approved %}
+
+                <div>
+                    <small class="text-muted">{{ comments.email  }}</small>
+                    <p>{{ comments.body }}</p>
+
+                    <small class="text-muted">{{ comments.created }}</small>
+                    <br>   
+                </div>  
+                
+                    {% if not comments.approved %}
+                        <a class="btn btn-default" href="{% url 'comment_remove' group.id comments.id %}"><span class="ti-close"></span></a>
+                        <a class="btn btn-default" href="{% url 'comment_approve' group.id comments.id %}"><span class="ti-check"></span></a>
+                    {% endif %}
+
+                {% endif %}
+
+        {% endfor %}
+        </div><!-- .entry-content -->
+
+ 
+    </div>
+    <div class="pt-3">
+            <button class="btn btn-outline-primary">
+                <a href="{% url 'add_comment' group.id %}">Leave a comment</a>
+            </button>
+    </div>
+    
+
+</div>
+
+
+<div class="author-box pt-5" >
+    <div>
+        <h3>Lectures:</h3>
+        <div class="entry-content mt-3 border border-left-1 border-success pl-3">
+        {% for lectures in lecture  %}
+            
+                <p><h5><strong>{{ lectures.title }}</strong></h5></p>
+                <p>
+                    
+                    <button class="btn btn-light"><a href="{{ lectures.document.url }}">Download</a></button>
+                </p>
+                
+                <small class="text-muted">{{ lectures.uploaded_at }}</small>
+
+        {% endfor %}
+        </div><!-- .entry-content -->
+
+        
+    </div>
+    <div class="pt-3">
+        {% if user.is_authenticated and user == group.owner %}
+            <button class="btn btn-outline-primary">
+                <a href="{% url 'upload_lecture' group.id %}">Add New Lecture</a>
+            </button>
+        {% endif %}
+    </div>
+    
+
+</div>
+
+
+
+
+{%endblock content%}
